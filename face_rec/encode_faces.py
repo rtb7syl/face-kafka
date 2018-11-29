@@ -63,8 +63,8 @@ def embed_known_faces(path_to_dir,pkl_file_path,upsample=1,model='hog'):
 
 if __name__ == "__main__":
 
-    path_to_dir = '../imgs/known_faces'
-    pkl_file_path = 'embeddings.pickle'
+    path_to_dir = 'imgs/known_faces'
+    pkl_file_path = 'face_rec/embeddings.pickle'
 
 
     embed_known_faces(path_to_dir,pkl_file_path)

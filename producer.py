@@ -1,5 +1,6 @@
 
 import time
+import sys
 
 from kafka import KafkaProducer
 import cv2
@@ -79,13 +80,26 @@ def video_emitter(source,producer_instance, topic_name, key):
 
 if __name__ == "__main__":
 
-    source = 'http://192.168.2.8:8080/video'
+    #source = 'http://192.168.2.8:8080/video'
     #source = '../imgs/predict/friends.mp4'
+
+    source_arg_param_0 = '--source'
+    source_arg_param_1 = '-s'
+    
+    if (sys.argv[1] == source_arg_param_0) or (sys.argv[1] == source_arg_param_1):
+
+        source = sys.argv[2]
+
+    else:
+
+        raise RuntimeError('Illegal comand line args')
 
     kafka_producer = connect_kafka_producer()
 
     topic_name = "raw_frames"
 
     key = "raw"
+
+    
 
     video_emitter(source,kafka_producer, topic_name, key)
