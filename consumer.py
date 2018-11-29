@@ -4,8 +4,8 @@ from kafka import KafkaConsumer
 import numpy as np
 import cv2
 
-import recognize_faces
-import utils
+from face_rec.recognize_faces import who_are_these
+from utils.utils import *
 
 
 #Continuously listen to the connection and print messages as recieved
@@ -32,13 +32,13 @@ def kafkastream(consumer,pkl_file,model,tolerance):
         #print(msg.value)
 
         # deserializing bytestring to a numpy array
-        img = utils.deserialize(msg.value)
+        img = deserialize(msg.value)
 
         #output frame from face-recognition subroutine
-        img = recognize_faces.who_are_these(img,pkl_file,model=model,tolerance=tolerance)
+        img = who_are_these(img,pkl_file,model=model,tolerance=tolerance)
 
         #serializing frame to bytestring 
-        frame_bytes = utils.serialize_frame(img)
+        frame_bytes = serialize_frame(img)
 
 
 
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     consumer = KafkaConsumer(topic_name, auto_offset_reset='earliest',bootstrap_servers=['localhost:9092'], api_version=(0, 10), consumer_timeout_ms=1000)
     
     
-    pkl_file = 'embeddings.pickle'
+    pkl_file = 'face_rec/embeddings.pickle'
 
     model = 'hog'
 

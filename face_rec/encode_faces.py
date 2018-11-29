@@ -7,7 +7,7 @@ import numpy
 import cv2
 import os
 
-import fr_utils as utils
+from utils import fr_utils
 
 
 def embed_known_faces(path_to_dir,pkl_file_path,upsample=1,model='hog'):
@@ -20,7 +20,7 @@ def embed_known_faces(path_to_dir,pkl_file_path,upsample=1,model='hog'):
     known_embeddings = []
     known_names = []
 
-    impaths = utils.images_paths(path_to_dir)
+    impaths = fr_utils.images_paths(path_to_dir)
 
     num_of_imgs = len(impaths)
 
@@ -28,14 +28,14 @@ def embed_known_faces(path_to_dir,pkl_file_path,upsample=1,model='hog'):
     for i,impath in enumerate(impaths):
 
         # loading the image as rgb
-        rgb = utils.load_image(impath)
+        rgb = fr_utils.load_image(impath)
         
 
-        name,fname = utils.extract_name(impath)
+        name,fname = fr_utils.extract_name(impath)
 
 
         print('[INFO] processing image '+str(fname)+' : '+str(i)+ '/'+str(num_of_imgs-1))
-        embeddings = utils.embed(rgb,upsample,model)
+        embeddings = fr_utils.embed(rgb,upsample,model)
 
         
         
@@ -53,7 +53,7 @@ def embed_known_faces(path_to_dir,pkl_file_path,upsample=1,model='hog'):
 
     print('[INFO] serializing embeddings...')
 
-    utils.serialize_embeddings(data,pkl_file_path)
+    fr_utils.serialize_embeddings(data,pkl_file_path)
 
     print('[INFO] serialization done!!')
 
@@ -63,7 +63,7 @@ def embed_known_faces(path_to_dir,pkl_file_path,upsample=1,model='hog'):
 
 if __name__ == "__main__":
 
-    path_to_dir = './imgs/known_faces'
+    path_to_dir = '../imgs/known_faces'
     pkl_file_path = 'embeddings.pickle'
 
 

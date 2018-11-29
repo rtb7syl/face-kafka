@@ -1,14 +1,17 @@
 # import the necessary packages
-import face_recognition
 
-import pickle
 
-import numpy
-import cv2
 import os
 import time
 
-import fr_utils as utils
+
+import face_recognition
+import pickle
+import numpy
+import cv2
+
+
+from utils import fr_utils as utils
 
 
 
@@ -230,10 +233,11 @@ if __name__ == "__main__":
     #vid_in = '../imgs/predict/friends.mp4'
     #vid_out = '../imgs/predict/friends_output0.avi'
 
-    impath = './imgs/index1.jpeg'
-    pkl_file_path = 'embeddings.pickle'
+    impath = 'imgs/index1.jpeg'
+    pkl_file_path = 'face_rec/embeddings.pickle'
 
     img = cv2.imread(impath)
+    print(img)
 
     img = who_are_these(img,pkl_file_path,model='hog',tolerance=0.6)
 

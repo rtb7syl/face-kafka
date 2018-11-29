@@ -1,8 +1,10 @@
-from kafka import KafkaProducer
-import cv2
+
 import time
 
-import utils
+from kafka import KafkaProducer
+import cv2
+
+from utils.utils import *
 
 def publish_message(producer_instance, topic_name, key, value):
     try:
@@ -56,7 +58,7 @@ def video_emitter(source,producer_instance, topic_name, key):
 
         # Convert the frame to bytes and send to kafka
         
-        frame_bytes = utils.serialize_frame(frame)
+        frame_bytes = serialize_frame(frame)
 
         publish_message(producer_instance, topic_name, key, frame_bytes)
 
@@ -78,12 +80,12 @@ def video_emitter(source,producer_instance, topic_name, key):
 if __name__ == "__main__":
 
     source = 'http://192.168.2.8:8080/video'
-    #vid = '../imgs/predict/friends.mp4'
+    #source = '../imgs/predict/friends.mp4'
 
     kafka_producer = connect_kafka_producer()
 
-    topic_name = "raw_frames_mess"
+    topic_name = "raw_frames"
 
-    key = "raw_mess"
+    key = "raw"
 
     video_emitter(source,kafka_producer, topic_name, key)
