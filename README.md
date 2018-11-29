@@ -63,6 +63,42 @@ face-kafka
       .........
       .........
 ```
-      
+Now, we need to convert those images into a 128 dims vector embedding.For that, go to project root and run the command
+```
+$ python -m face_rec.encode_faces
+```
+An embeddings.pickle file will be generated in face-kafka/face_rec after this. 
 
+Now that the face images are embedded, we can start detecting and recognizing faces from video streams.For that,
+First start zookeeper and kafka broker servers in two different terminal instances
+
+Start zookeeper server 
+```
+$ cd <kafka-installation-path>
+$ bin/zookeeper-server-start.sh config/zookeeper.properties
+```
+Start Kafka server
+```
+$ cd <kafka-installation-path>
+$ bin/kafka-server-start.sh config/server.properties
+```
+Now, run the producer code from another terminal instance. Go to project root.
+```
+$ python producer.py --source <video_source>
+or
+$ python producer.py -s <video_source>
+```
+<video_source> can be a remote or a local video stream source
+
+Finally, run the consumer code from project root.
+```
+python consumer.py
+```
+Then go to localhost:5000 to see the detected and recognised faces video stream
+
+### Known Issues
+
+As of now , this project is comaptible for a Linux environment.
+Since this a prototype version, the entire app runs on a local dev environment
+To change number of partitions, topics etc, please feel free to play with the code.
 
