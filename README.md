@@ -29,7 +29,6 @@ What things you need to install the software and how to install them
 - The other dependencies can be installed as follows:
   ```
   $ conda env create -f environment.yml
-  $ source activate machine-learning
   
   ```
 
