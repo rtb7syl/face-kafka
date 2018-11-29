@@ -40,3 +40,29 @@ $ git clone https://github.com/rtb7syl/face-kafka.git
 $ cd face-kafka
 $ source activate face-kafka
 ```
+
+### Get it running
+
+Now that all the dependencies are installed, and the environment is activated, it's time to run the app.
+
+First things first, we need to store the known face images somewhere.So, from the project root, type in the commands
+```
+$ mkdir imgs
+$ cd imgs
+$ mkdir known_faces
+```
+Inside known_faces create a directory for each person you want to identify. In each such directory corresponding to a person, store atleast 10 images of that person's face.
+
+The directory structure will be like this:
+```
+face-kafka
+  ..imgs
+    ..known_faces
+      ..person1
+      ..person2
+      .........
+      .........
+```
+      
+
+
