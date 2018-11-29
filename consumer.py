@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
     #connect to Kafka server and pass the topic we want to consume
     
-    topic_name = "raw_frames"
+    topic_name = "raw_frames_mess"
     consumer = KafkaConsumer(topic_name, auto_offset_reset='earliest',bootstrap_servers=['localhost:9092'], api_version=(0, 10), consumer_timeout_ms=1000)
     
     

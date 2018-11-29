@@ -28,9 +28,9 @@ def connect_kafka_producer():
         return _producer
 
 
-def video_emitter(video,producer_instance, topic_name, key):
+def video_emitter(source,producer_instance, topic_name, key):
     # Open the video
-    video = cv2.VideoCapture(video)
+    video = cv2.VideoCapture(source)
 
     # Check if camera opened successfully
     if (video.isOpened() == False): 
@@ -77,12 +77,13 @@ def video_emitter(video,producer_instance, topic_name, key):
 
 if __name__ == "__main__":
 
-    vid = '../imgs/predict/friends.mp4'
+    source = 'http://192.168.2.8:8080/video'
+    #vid = '../imgs/predict/friends.mp4'
 
     kafka_producer = connect_kafka_producer()
 
-    topic_name = "raw_frames"
+    topic_name = "raw_frames_mess"
 
-    key = "raw"
+    key = "raw_mess"
 
-    video_emitter(vid,kafka_producer, topic_name, key)
+    video_emitter(source,kafka_producer, topic_name, key)

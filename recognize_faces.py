@@ -13,7 +13,7 @@ import fr_utils as utils
 
 
 
-def predict_name_from_embedding(embedding,data,tolerance=0.6):
+def predict_name_from_embedding(embedding,data,tolerance=0.8):
 
     # given the face image embedding and the data of all the embeddings,
     # predicts the name of the person (class label)
@@ -227,10 +227,21 @@ def recognise_faces_from_video(vid_in,vid_out,pkl_file_path,model='hog'):
 if __name__ == "__main__":
 
     #impath = '../imgs/predict/friends'
-    vid_in = '../imgs/predict/friends.mp4'
-    vid_out = '../imgs/predict/friends_output0.avi'
+    #vid_in = '../imgs/predict/friends.mp4'
+    #vid_out = '../imgs/predict/friends_output0.avi'
 
+    impath = './imgs/index1.jpeg'
     pkl_file_path = 'embeddings.pickle'
+
+    img = cv2.imread(impath)
+
+    img = who_are_these(img,pkl_file_path,model='hog',tolerance=0.6)
+
+    cv2.imshow("Image", img)
+    cv2.waitKey(0)
+
+
+
 
     '''
     img = who_are_these(impath,pkl_file_path,model='hog',tolerance=0.6)
@@ -240,4 +251,4 @@ if __name__ == "__main__":
     cv2.waitKey(0)
     '''
 
-    recognise_faces_from_video(vid_in,vid_out,pkl_file_path)
+    #recognise_faces_from_video(vid_in,vid_out,pkl_file_path)
