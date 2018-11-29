@@ -29,6 +29,14 @@ What things you need to install the software and how to install them
 - The other dependencies can be installed as follows:
   ```
   $ conda env create -f environment.yml
-  
   ```
 
+### Installing
+
+A step by step series of examples that tell you how to get a development env running
+
+```
+$ git clone https://github.com/rtb7syl/face-kafka.git
+$ cd face-kafka
+$ source activate face-kafka
+```
