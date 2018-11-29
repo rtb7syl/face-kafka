@@ -12,7 +12,7 @@ The frame that gets out of the face recognition pipeline, is basically the origi
 A Flask Webserver renders these "transformed" frames on localhost:5000.
 
 On a sidenote, the Face detection algorithm can either be dlib HOG or dlib CNN detectors , which can be provided as parameters.
-And, the Face recognotion algorithm is based on the Google FaceNet architecture.
+And, the Face recognition algorithm is based on the Google FaceNet architecture.
 
 
 ## Getting Started
@@ -25,6 +25,4 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-```
-Give examples
-```
+*Make sure yoy 
