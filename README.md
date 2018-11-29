@@ -102,3 +102,5 @@ As of now , this project is comaptible for a Linux environment.
 Since this a prototype version, the entire app runs on a local dev environment
 To change number of partitions, topics etc, please feel free to play with the code.
 
+### License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
