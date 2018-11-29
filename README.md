@@ -9,5 +9,22 @@ Therefore a producer captures the data frame by frame from the video source, ser
 The consumer then subscribes to the topic , gets the data (the bytestring of each frame) , deserializes it into a numpy array,and pushes it into the face recognition pipeline.
 The frame that gets out of the face recognition pipeline, is basically the original frame with bboxes around the faces detected, with their corresponding names if the algorithm could reognize the face , else it's labelled as "Unknown".
 
-A Flask Webserver,then renders these "transformed" frames on localhost:5000.
+A Flask Webserver renders these "transformed" frames on localhost:5000.
 
+On a sidenote, the Face detection algorithm can either be dlib HOG or dlib CNN detectors , which can be provided as parameters.
+And, the Face recognotion algorithm is based on the Google FaceNet architecture.
+
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+
+
+### Prerequisites
+
+What things you need to install the software and how to install them
+
+```
+Give examples
+```
