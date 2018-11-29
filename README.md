@@ -17,7 +17,7 @@ And, the Face recognition algorithm is based on the Google FaceNet architecture.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 
 
@@ -25,4 +25,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-*Make sure yoy 
+- Make sure you have Apache Kafka and Anaconda installed properly on your system
+- The other dependencies can be installed as follows:
+
