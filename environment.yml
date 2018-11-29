@@ -1,4 +1,4 @@
-name: machine-learning
+name: face-kafka
 channels:
   - anaconda
   - menpo
