@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 
 
-def kafkastream(consumer,pkl_file,model,tolerance):
+def kafkastream(consumer,pkl_file,imwrite_path,model,tolerance):
 
     # takes in serialized raw frames from consumer ,deserializes it, 
     # and pushes it into the face detection and recognition subroutine
@@ -35,7 +35,7 @@ def kafkastream(consumer,pkl_file,model,tolerance):
         img = deserialize(msg.value)
 
         #output frame from face-recognition subroutine
-        img = who_are_these(img,pkl_file,model=model,tolerance=tolerance)
+        img = who_are_these(img,pkl_file,imwrite_path,model=model,tolerance=tolerance)
 
         #serializing frame to bytestring 
         frame_bytes = serialize_frame(img)
@@ -56,15 +56,17 @@ if __name__ == '__main__':
 
     #connect to Kafka server and pass the topic we want to consume
     
-    topic_name = "raw_frames_mess"
-    consumer = KafkaConsumer(topic_name, auto_offset_reset='earliest',bootstrap_servers=['localhost:9092'], api_version=(0, 10), consumer_timeout_ms=1000)
+    topic_name = "test"
+    consumer = KafkaConsumer(topic_name, auto_offset_reset='earliest',bootstrap_servers=['192.168.1.2:9569'], api_version=(0, 10), consumer_timeout_ms=1000)
     
     
-    pkl_file = 'face_rec/embeddings.pickle'
+    pkl_file = 'embeddings.pickle'
 
     model = 'hog'
 
     tolerance = 0.6
+
+    imwrite_path = 'recognized_faces'
     
 
 
@@ -72,7 +74,7 @@ if __name__ == '__main__':
 
     def index():
         # return a multipart response
-        return Response(kafkastream(consumer,pkl_file,model,tolerance),
+        return Response(kafkastream(consumer,pkl_file,imwrite_path,model,tolerance),
                         mimetype='multipart/x-mixed-replace; boundary=frame')
 
 

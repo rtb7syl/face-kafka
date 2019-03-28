@@ -110,10 +110,18 @@ def draw_bboxes_around_faces(img,name_to_bboxes_mapping):
     
     return img
 
+def save_recognized_imgs(img,names_to_bboxes_mapping,path):
+
+    # loop over the recognized faces
+    i=0
+    for (name,(top, right, bottom, left)) in names_to_bboxes_mapping:
+
+        recognised_face_crop = img[top:bottom,left:right]
+        cv2.imwrite(os.path.join(path,name,name+'_'+str(i)+'.png'),recognised_face_crop)
+        i += 1
 
 
-
-def who_are_these(img,pkl_file_path,model='hog',tolerance=0.6):
+def who_are_these(img,pkl_file_path,imwrite_path,model='hog',tolerance=0.6):
 
 
     # load the known faces and embeddings
@@ -137,13 +145,13 @@ def who_are_these(img,pkl_file_path,model='hog',tolerance=0.6):
 
     
 
-
+    save_recognized_imgs(img,names_to_bboxes_mapping,imwrite_path)
     img = draw_bboxes_around_faces(img,names_to_bboxes_mapping)
 
     return img
 
 
-def recognise_faces_from_video(vid_in,vid_out,pkl_file_path,model='hog'):
+def recognise_faces_from_video(vid_in,vid_out,pkl_file_path,imwrite_path,model='hog'):
 
     # processes a video frame by frame,predicts faces for each frame
     # and writes the entire processed video to an output video file
@@ -185,7 +193,7 @@ def recognise_faces_from_video(vid_in,vid_out,pkl_file_path,model='hog'):
             
 
             
-            frame = who_are_these(frame,pkl_file_path,model=model,tolerance=0.6)
+            frame = who_are_these(frame,pkl_file_path,imwrite_path,model=model,tolerance=0.6)
             
             end = time.time()
 
@@ -235,11 +243,12 @@ if __name__ == "__main__":
 
     impath = 'imgs/index1.jpeg'
     pkl_file_path = 'face_rec/embeddings.pickle'
+    imwrite_path = 'imgs'
 
     img = cv2.imread(impath)
     print(img)
 
-    img = who_are_these(img,pkl_file_path,model='hog',tolerance=0.6)
+    img = who_are_these(img,pkl_file_path,imwrite_path,model='hog',tolerance=0.6)
 
     cv2.imshow("Image", img)
     cv2.waitKey(0)

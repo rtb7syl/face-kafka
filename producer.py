@@ -22,7 +22,7 @@ def publish_message(producer_instance, topic_name, key, value):
 def connect_kafka_producer():
     _producer = None
     try:
-        _producer = KafkaProducer(bootstrap_servers=['localhost:9092'], api_version=(0, 10))
+        _producer = KafkaProducer(bootstrap_servers=['192.168.1.2:9569'], api_version=(0, 10))
     except Exception as ex:
         print('Exception while connecting Kafka')
         print(str(ex))
@@ -81,8 +81,8 @@ def video_emitter(source,producer_instance, topic_name, key):
 if __name__ == "__main__":
 
     #source = 'http://192.168.2.8:8080/video'
-    #source = '../imgs/predict/friends.mp4'
-
+    
+    '''
     source_arg_param_0 = '--source'
     source_arg_param_1 = '-s'
     
@@ -93,10 +93,13 @@ if __name__ == "__main__":
     else:
 
         raise RuntimeError('Illegal comand line args')
+    '''
+
+    source = 'video_predict_1.mp4'
 
     kafka_producer = connect_kafka_producer()
 
-    topic_name = "raw_frames"
+    topic_name = "test"
 
     key = "raw"
 
