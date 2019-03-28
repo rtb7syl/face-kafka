@@ -36,6 +36,7 @@ def kafkastream(consumer,pkl_file,imwrite_path,model,tolerance):
 
         #output frame from face-recognition subroutine
         img = who_are_these(img,pkl_file,imwrite_path,model=model,tolerance=tolerance)
+        print('xx')
 
         #serializing frame to bytestring 
         frame_bytes = serialize_frame(img)

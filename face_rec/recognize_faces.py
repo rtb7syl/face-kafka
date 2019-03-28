@@ -117,7 +117,10 @@ def save_recognized_imgs(img,names_to_bboxes_mapping,path):
     for (name,(top, right, bottom, left)) in names_to_bboxes_mapping:
 
         recognised_face_crop = img[top:bottom,left:right]
+        print(recognised_face_crop.shape)
+
         cv2.imwrite(os.path.join(path,name,name+'_'+str(i)+'.png'),recognised_face_crop)
+        print('imwritten to',os.path.join(path,name,name+'_'+str(i)+'.png'))
         i += 1
 
 
