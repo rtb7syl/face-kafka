@@ -38,6 +38,7 @@ def kafkastream(consumer,pkl_file,imwrite_path,model,tolerance):
         img = who_are_these(img,pkl_file,imwrite_path,model=model,tolerance=tolerance)
         print('xx')
 
+        '''
         #serializing frame to bytestring 
         frame_bytes = serialize_frame(img)
 
@@ -50,7 +51,7 @@ def kafkastream(consumer,pkl_file,imwrite_path,model,tolerance):
         yield (b'--frame\r\n'
                b'Content-Type: image/png\r\n\r\n' + frame_bytes + b'\r\n\r\n')
 
-
+        '''
 
 
 if __name__ == '__main__':
@@ -68,9 +69,11 @@ if __name__ == '__main__':
     tolerance = 0.6
 
     imwrite_path = 'recognized_faces'
+
+    kafkastream(consumer,pkl_file,imwrite_path,model,tolerance)
     
 
-
+    '''
     @app.route('/')
 
     def index():
@@ -80,3 +83,4 @@ if __name__ == '__main__':
 
 
     app.run(host='127.0.0.1', debug=True)
+    '''
